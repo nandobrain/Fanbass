@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,23 +7,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Fanbass</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
 	<header>
-		<div class="sidebar">
+		<div class="navbar">
 			<div class="artist-info-render">
 
 			</div>
 			<nav>
 				{% if user.is_authenticated %}
-				<li><a>ADD TO LIBRARY</a>/li>
-				<li><a>EXPLORE</a>/li>
-				<li><a>PROFILE</a>/li>
-				<li><a>LOGOUT</a>/li>
+				<li><a href="">ADD TO LIBRARY</a>/li>
+				<li><a href="">EXPLORE</a>/li>
+				<li><a href="">PROFILE</a>/li>
+				<li><a href="">LOGOUT</a>/li>
 				{% else %}
-				<a>SIGN UP</a>
-				<a>SIGN IN</a>
+				<a href="">SIGN UP</a>
+				<a href="">SIGN IN</a>
 				{% endif %}
 			</nav>
 		</div>
@@ -30,8 +36,5 @@
 		{% block content %}
 		{% endblock %}
 	</main>
-	<footer class="page-footer">
-
-	</footer>
 </body>
 </html>
