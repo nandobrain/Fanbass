@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fanbass</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+	<header>
+		<div class="sidebar">
+			<div class="artist-info-render">
+
+			</div>
+			<nav>
+				{% if user.is_authenticated %}
+				<li><a>ADD TO LIBRARY</a>/li>
+				<li><a>EXPLORE</a>/li>
+				<li><a>PROFILE</a>/li>
+				<li><a>LOGOUT</a>/li>
+				{% else %}
+				<a>SIGN UP</a>
+				<a>SIGN IN</a>
+				{% endif %}
+			</nav>
+		</div>
+	</header>
+	<main class="container">
+		{% block content %}
+		{% endblock %}
+	</main>
+	<footer class="page-footer">
+
+	</footer>
+</body>
+</html>
