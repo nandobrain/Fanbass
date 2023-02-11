@@ -1,9 +1,11 @@
+
 import uuid
 import boto3
 import os
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, ListView
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -12,6 +14,7 @@ from .models import Artist, Experience, User, Photo
 
 
 # Create your views here.
+
 
 
 class ArtistDetail(DetailView):
@@ -87,3 +90,4 @@ def signup(request):
 
 def home(request):
    return render(request, 'home.html')
+
