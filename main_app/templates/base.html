@@ -22,12 +22,13 @@
 			<nav>
 				{% if user.is_authenticated %}
 				<li><a href="">ADD TO LIBRARY</a>/li>
-				<li><a href="">EXPLORE</a>/li>
+				<li><a href="">HOME</a>/li>
 				<li><a href="">PROFILE</a>/li>
 				<li><a href="">LOGOUT</a>/li>
 				{% else %}
-				<a href="">SIGN UP</a>
-				<a href="">SIGN IN</a>
+				<a href="{% url 'home' %}">HOME</a>
+				<a href="{% url 'signup' %}">SIGN UP</a>
+				<a href="{% url 'login' %}">LOG IN</a>
 				{% endif %}
 			</nav>
 		</div>
