@@ -14,8 +14,8 @@ class Artist(models.Model):
     def __str__(self):
         return f"{self.name} artist by {self.user}"
     
-    # def get_absolute_url(self):
-        # return reverse('artist_detail', kwargs={'artist_id': self.id})
+    def get_absolute_url(self):
+        return reverse('artist_details', kwargs={'pk': self.id})
     
 
 class Experience(models.Model):
@@ -71,15 +71,19 @@ class Experience(models.Model):
         choices=MUSIC_TYPE
     )
 
-    show_venue_name = models.CharField(max_length=100)
+    show_venue_name = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True
+    )
 
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.experience_type} experience on {self.artist}"
     
-    # def get_absolute_url(self):
-        # return reverse('experience_detail', kwargs={'experience_id': self.id})
+    def get_absolute_url(self):
+        return reverse('artist_details', kwargs={'pk': self.id})
 
 
 
