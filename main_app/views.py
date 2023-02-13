@@ -11,15 +11,19 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Artist, Experience, User, Photo
-from .forms import CommentForm
-
+from .forms import CommentForm, ExperienceForm
+from django.urls import reverse
 
 # Create your views here.
 
 class ArtistDetail(DetailView):
    model = Artist
    template_name = 'artists/artist_details.html'
- 
+   def get_context_data(self, **kwargs):
+      context = super(ArtistDetail, self).get_context_data(**kwargs)
+      context['experience_form'] = ExperienceForm()
+      return context
+
 class ArtistList(ListView):
    model = Artist  
    template_name = 'artists/artist_list.html'
@@ -53,7 +57,20 @@ class ExperienceDetail(DetailView):
    
 class ExperienceCreate(CreateView):
    model = Experience
-   fields = ['Music', 'Video', 'Show', 'Merchandise', 'Social Media', 'News']
+   fields = ['user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
+   success_url = '/artists'
+
+   def get_success_url(self):
+      pk = self.kwargs['pk']
+      return reverse('artist_details', kwargs={'pk': pk})
+
+   def form_valid(self, form):
+      form.instance.user = self.request.user
+      pk = self.kwargs['pk']
+      artist = Artist.objects.get(id=pk)
+      form.instance.artist = artist
+      return super().form_valid(form)
+
 
 class ExperienceUpdate(UpdateView):
    model = Experience
@@ -62,8 +79,6 @@ class ExperienceUpdate(UpdateView):
 class ExperienceDelete(DeleteView):
    model = Experience
    
-
-
 
 def add_comment(request, artist_id):
    form = CommentForm(request.POST)
