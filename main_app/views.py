@@ -15,8 +15,6 @@ from .models import Artist, Experience, User, Photo
 
 # Create your views here.
 
-
-
 class ArtistDetail(DetailView):
    model = Artist
    template_name = 'artists/artist_details.html'
@@ -34,24 +32,14 @@ class ArtistCreate(CreateView):
        form.instance.user = self.request.user
        return super().form_valid(form)
 
-
 class ArtistUpdate(UpdateView):
    model = Artist
-   fields =  ['members', 'description']
-
+   fields =  ['name', 'members', 'description']
+   success_url = '/artists/artist_id'
 
 class ArtistDelete(DeleteView):
    model = Artist
    success_url = '/artists'
-
-
-
-
-
-
-
-
-
 
 def add_photo(request, artist_id):
    photo_file = request.FILES.get('photo-file', None)
@@ -68,11 +56,6 @@ def add_photo(request, artist_id):
            print(e)
    return redirect('detail', artist_id=artist_id)
 
-
-
-
-
-
 def signup(request):
  error_message = ''
  if request.method == 'POST':
@@ -86,7 +69,6 @@ def signup(request):
  form = UserCreationForm()
  context = {'form': form, 'error_message': error_message}
  return render(request, 'registration/signup.html', context)
-
 
 def home(request):
    return render(request, 'home.html')
