@@ -51,7 +51,7 @@ class ExperienceList(ListView):
    model = Experience
 
 
-class ExperinceDetail(DetailView):
+class ExperienceDetail(DetailView):
    model = Experience
    
 class ExperienceCreate(CreateView):
@@ -64,17 +64,17 @@ class ExperienceUpdate(UpdateView):
 
 class ExperienceDelete(DeleteView):
    model = Experience
-   success_url = '/experience'
+   
 
 
 
-def add_comment(request, experience_id):
+def add_comment(request, artist_id):
    form = CommentForm(request.POST)
-   if form.is_vali():
+   if form.is_valid():
       new_comment = form.save(commit=False)
-      new_comment.experience_id = experience_id
+      new_comment.artist_id = artist_id
       new_comment.save()
-   return redirect('experince_detail', experience_id=experience_id)
+   return redirect('experience_details', artist_id=artist_id)
 
 
 
@@ -92,7 +92,7 @@ def add_photo(request, artist_id):
        except Exception as e:
            print('An error occurred uploading file to S3')
            print(e)
-   return redirect('detail', artist_id=artist_id)
+   return redirect('artist_details', artist_id=artist_id)
 
 
 
@@ -104,7 +104,7 @@ def signup(request):
    if form.is_valid():
      user = form.save()
      login(request, user)
-     return redirect('index')
+     return redirect('artist_index')
    else:
      error_message = 'Invalid sign up - try again'
  form = UserCreationForm()
