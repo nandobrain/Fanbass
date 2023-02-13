@@ -17,17 +17,28 @@
 	<header>
 		<div class="navbar">
 			<div class="artist-info-render">
-
+				{% if artist %}
+				<div class="nav-artist-img">
+					<img src="https://pbs.twimg.com/profile_images/1133109643734130688/BwioAwkz_400x400.jpg">
+				</div>
+				<div class="nav-artist-name">
+					{{ artist.name }}
+				</div>
+				{% endif %}
 			</div>
 			<nav>
 				{% if user.is_authenticated %}
-				<li><a href="">ADD TO LIBRARY</a>/li>
-				<li><a href="">EXPLORE</a>/li>
-				<li><a href="">PROFILE</a>/li>
-				<li><a href="">LOGOUT</a>/li>
+				{% if artist %}
+				<a href="">ADD EXPERIENCE</a>
+				{% endif %}
+				<a href="{% url 'artist_create' %}">ADD TO LIBRARY</a>
+				<a href="{% url 'home' %}">HOME</a>
+				<a href="{% url 'artist_index' %}">LIBRARY</a>
+				<a href="">LOGOUT</a>
 				{% else %}
-				<a href="">SIGN UP</a>
-				<a href="">SIGN IN</a>
+				<a href="{% url 'home' %}">HOME</a>
+				<a href="{% url 'signup' %}">SIGN UP</a>
+				<a href="{% url 'login' %}">LOG IN</a>
 				{% endif %}
 			</nav>
 		</div>

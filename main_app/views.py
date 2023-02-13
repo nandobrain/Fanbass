@@ -19,20 +19,20 @@ from .models import Artist, Experience, User, Photo
 
 class ArtistDetail(DetailView):
    model = Artist
+   template_name = 'artists/artist_details.html'
  
 class ArtistList(ListView):
    model = Artist  
-  
-
+   template_name = 'artists/artist_list.html'
 
 class ArtistCreate(CreateView):
    model = Artist
-   fields = ['name', 'members', 'description']
+   fields = ['name']
+   success_url = '/artists'
 
-
-   # def from_valid(self, form):
-   #     form.instance.user = self.request.user
-   #     return super().form_valid(form)
+   def form_valid(self, form):
+       form.instance.user = self.request.user
+       return super().form_valid(form)
 
 
 class ArtistUpdate(UpdateView):
@@ -42,7 +42,7 @@ class ArtistUpdate(UpdateView):
 
 class ArtistDelete(DeleteView):
    model = Artist
-   success_url = '/artist'
+   success_url = '/artists'
 
 
 
