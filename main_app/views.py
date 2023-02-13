@@ -36,7 +36,7 @@ class ArtistCreate(CreateView):
 class ArtistUpdate(UpdateView):
    model = Artist
    fields =  ['name', 'members', 'description']
-   success_url = '/artists/artist_id'
+   success_url = "/artists/artist_id"
 
 class ArtistDelete(DeleteView):
    model = Artist
