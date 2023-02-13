@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Library</h1>
+
+<div class="artist-index-ctr">
+	<div class="card-ctr">
+		{% for artist in object_list %}
+		<div class="card">
+			<a href="{% url 'artist_details' artist.id %}">
+			  <div class="img-ctr">
+				<img src="https://pbs.twimg.com/profile_images/1133109643734130688/BwioAwkz_400x400.jpg" class="artist-img">
+			  </div>
+			</a>
+		</div>
+		<div class="label">
+			<p>{{ artist.name }}</p>
+		</div>
+		<div class="artist-CRUD">
+			<a href="{% url 'artist_update' artist.id %}">edit</a>
+			<div class="separator"></div>
+			<a href="{% url 'artist_delete' artist.id %}">delete</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

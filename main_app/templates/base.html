@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fanbass</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+	<header>
+		<div class="navbar">
+			<div class="artist-info-render">
+				{% if artist %}
+				<div class="nav-artist-img">
+					<img src="https://pbs.twimg.com/profile_images/1133109643734130688/BwioAwkz_400x400.jpg">
+				</div>
+				<div class="nav-artist-name">
+					{{ artist.name }}
+				</div>
+				{% endif %}
+			</div>
+			<nav>
+				{% if user.is_authenticated %}
+				{% if artist %}
+				<a href="">ADD EXPERIENCE</a>
+				{% endif %}
+				<a href="{% url 'artist_create' %}">ADD TO LIBRARY</a>
+				<a href="{% url 'home' %}">HOME</a>
+				<a href="{% url 'artist_index' %}">LIBRARY</a>
+				<a href="">LOGOUT</a>
+				{% else %}
+				<a href="{% url 'home' %}">HOME</a>
+				<a href="{% url 'signup' %}">SIGN UP</a>
+				<a href="{% url 'login' %}">LOG IN</a>
+				{% endif %}
+			</nav>
+		</div>
+	</header>
+	<main class="container">
+		{% block content %}
+		{% endblock %}
+	</main>
+</body>
+</html>

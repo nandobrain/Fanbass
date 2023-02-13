@@ -1,0 +1,215 @@
+:root {
+	--dark-blue: #054A91;
+	--light-blue: #81A4CD;
+	--accent: #F17300;
+}
+
+* {
+	color: white;
+	font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	grid-template-areas: 
+		'navbar main';
+}
+
+.navbar {
+	grid-area: navbar;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--dark-blue);
+	justify-content: space-between;
+}
+
+nav {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin: 1.2rem;
+}
+
+nav a {
+	margin: .2em;
+	width: fit-content;
+}
+
+nav a:hover {
+	color: var(--accent);
+}
+
+.blue-text {
+	color: var(--dark-blue)
+}
+
+/* HOME PAGE */
+
+main {
+	grid-area: main;
+	height: 100%;
+	background-color: var(--light-blue);
+}
+
+/* .sidebar {
+	display: flex;
+	grid-area: sidebar;
+	height: 100%;
+	color: var(--accent);
+	background-color: var(--dark-blue);
+	align-self: right;
+} */
+
+/* SIGN UP/LOG IN */
+
+h1 {
+	text-align: center;
+}
+
+.form label {
+	color: black;
+}
+
+.form {
+	background-color: var(--accent);
+	padding: 1rem;
+	margin: 1rem;
+	box-shadow: 4px 4px 4px rgb(85, 85, 85);
+}
+
+.form p {
+	display: flex;
+	flex-direction: column;
+}
+
+.form input {
+	border: none;
+	background-color: var(--accent);
+	border-bottom: 2px solid white;
+	height: 1.5rem;
+	margin-bottom: .3rem;
+	margin-top: .5rem;
+	font-size: 1.5rem;
+}
+
+.form input:focus {
+	outline: none !important;
+}
+
+.form-submit.btn {
+	border: .2rem solid white ;
+	background-color: var(--light-blue);
+	padding: .2rem;
+	height: 2rem;
+	width: 5rem;
+	cursor: pointer;
+	font-size: 1.2rem;
+}
+
+/* INDEX PAGE */
+
+.artist-index-ctr {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 1rem;
+}
+
+.card-ctr {
+	padding: .5rem .5rem .2rem .5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.artist-img {
+	height: 10rem;
+	box-shadow: 5px 5px 5px rgb(85, 85, 85);
+	max-height: 25rem;
+	max-width: 25rem;
+}
+
+.label {
+	margin-top: .2rem;
+	background-color: var(--accent);
+	box-shadow: 2px 2px 2px rgb(85, 85, 85);
+	width: 100%;
+	text-align: center;
+}
+
+.label p {
+	color: white;
+	font-size: 1.5rem;
+	margin: .5rem;
+}
+.artist-CRUD {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.artist-CRUD a {
+	width: 50%;
+	margin: .2rem 0rem;
+	padding: .2rem;
+	font-size: .6rem;
+	text-align: center;
+	background-color: var(--accent);
+	box-shadow: 2px 2px 2px rgb(85, 85, 85);
+	cursor: pointer;
+}
+
+.separator {
+	width: .15rem;
+	height: 1.5rem;
+}
+
+/* DETAILS PAGE */
+
+.artist-info-render {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2rem;
+}
+
+.nav-artist-img img {
+	height: 7rem;
+	box-shadow: 2px 2px 2px rgb(36, 34, 34);
+}
+
+.nav-artist-name {
+	margin-top: .6rem;
+	background-color: var(--accent);
+	width: 53%;
+	text-align: center;
+	padding: .2rem
+}
+
+/* DELETE FORM */
+
+.confirm-delete-form {
+	display: flex;
+	justify-content: center;
+}
+
+.confirm-delete-btn {
+	background-color: var(--accent);
+	font-size: 1.3rem;
+	cursor: pointer;
+}
