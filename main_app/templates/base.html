@@ -34,7 +34,7 @@
 				<a href="{% url 'artist_create' %}">ADD TO LIBRARY</a>
 				<a href="{% url 'home' %}">HOME</a>
 				<a href="{% url 'artist_index' %}">LIBRARY</a>
-				<a href="">LOGOUT</a>
+				<a href="{% url 'logout' %}">LOGOUT</a>
 				{% else %}
 				<a href="{% url 'home' %}">HOME</a>
 				<a href="{% url 'signup' %}">SIGN UP</a>
