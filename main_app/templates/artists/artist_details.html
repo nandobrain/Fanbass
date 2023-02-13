@@ -2,8 +2,92 @@
 {% block content %}
 
 
-<div class="">
+<h3>Add An Experience</h3>
+<form action="{% url 'add_experience' artist.id %}" method="POST">
+  {% csrf_token %}
+  <label for="custom_experience_type">Segment Type: </label>
+  <select id="custom_experience_type" name="custom_experience_type" class="custom_experience_type" onchange="experienceFormFormat(this.value)">
+    <option disabled selected value> -- select an option -- </option>
+    <option value="MU">Music</option>
+    <option value="VI">Video</option>
+    <option value="SH">Show</option>
+    <option value="ME">Merchandise</option>
+    <option value="SO">Social Media</option>
+    <option value="NE">News</option>
+  </select>
 
-</div>
+  <div id="common-fields-1" style="display:none">
+    <p><label>Your Thoughts: </label>{{ experience_form.user_review }}</p>
+    <p><label>Date of Experience: </label>{{ experience_form.date_time }}</p>
+    <p><label>: </label>{{ experience_form. }}</p>
+  </div>
+  
+  <div id="music-fields" style="display:none">
+    <p><label>Release Type: </label>{{ experience_form.music_type }}</p>
+  </div>
 
+  <div id="show-fields" style="display:none">
+    <p><label>Venue Name: </label>{{ experience_form.show_venue_name }}</p>
+  </div>
+
+  <div id="common-fields-2" style="display:none">
+    <p><label>Link: </label>{{ experience_form.link }}</p>
+    <!-- Need to work out photo upload -->
+  </div>
+
+  
+
+  <input type="submit" class="btn" value="Add Test">
+</form>
+<br>
+<br>
+
+
+<script>
+
+  function experienceFormFormat (val) {
+    console.log(val)
+    if(val === "MU") {
+        document.getElementById('common-fields-1').style.display="block";
+        document.getElementById('music-fields').style.display="block";
+        document.getElementById('show-fields').style.display="none";
+        document.getElementById('common-fields-2').style.display="block";
+    } else if(val === "SH") {
+        document.getElementById('common-fields-1').style.display="block";
+        document.getElementById('music-fields').style.display="none";
+        document.getElementById('show-fields').style.display="block";
+        document.getElementById('common-fields-2').style.display="block";    
+    } else {
+        document.getElementById('common-fields-1').style.display="block";
+        document.getElementById('music-fields').style.display="none";
+        document.getElementById('show-fields').style.display="none";
+        document.getElementById('common-fields-2').style.display="block";    
+  }
+
+  const segmentType1El = document.getElementById('custom_segment_type');
+  M.FormSelect.init(segmentType1El);
+
+  const segmentTypeEl = document.getElementById('id_segment_type');
+  M.FormSelect.init(segmentTypeEl);
+
+  const startDateEl = document.getElementById('id_start_date');
+  M.Datepicker.init(startDateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  const dateEl = document.getElementById('id_end_date');
+  M.Datepicker.init(endDateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  const segmentCountryStartEl = document.getElementById('id_segment_country_start');
+  M.FormSelect.init(segmentCountryStartEl);
+
+</script>
 {% endblock %}
