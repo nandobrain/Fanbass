@@ -5,8 +5,4 @@ from .models import Artist, Experience, Comment, Photo
 admin.site.register(Artist)
 admin.site.register(Experience)
 admin.site.register(Comment)
-<<<<<<< HEAD
 admin.site.register(Photo)
-=======
-admin.site.register(Photo)
->>>>>>> main
