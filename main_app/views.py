@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Artist, Experience, User, Photo
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -43,9 +44,34 @@ class ArtistDelete(DeleteView):
 
 
 
+class ExperienceList(ListView):
+   model = Experience
+
+
+class ExperinceDetail(DetailView):
+   model = Experience
+   
+class ExperienceCreate(CreateView):
+   model = Experience
+   fields = ['Music', 'Video', 'Show', 'Merchandise', 'Social Media', 'News']
+
+class ExperienceUpdate(UpdateView):
+   model = Experience
+   fields = '__all__'
+
+class ExperienceDelete(DeleteView):
+   model = Experience
+   success_url = '/experience'
 
 
 
+def add_comment(request, experience_id):
+   form = CommentForm(request.POST)
+   if form.is_vali():
+      new_comment = form.save(commit=False)
+      new_comment.experience_id = experience_id
+      new_comment.save()
+   return redirect('experince_detail', experience_id=experience_id)
 
 
 
@@ -64,8 +90,6 @@ def add_photo(request, artist_id):
            print('An error occurred uploading file to S3')
            print(e)
    return redirect('detail', artist_id=artist_id)
-
-
 
 
 
