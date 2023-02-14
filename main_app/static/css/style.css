@@ -1,5 +1,6 @@
 :root {
 	--dark-blue: #054A91;
+	--blue: #3e7cb1;
 	--light-blue: #81A4CD;
 	--accent: #F17300;
 }
@@ -23,14 +24,16 @@ body {
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
-	display: grid;
-	grid-template-columns: 1fr 4fr;
-	grid-template-areas: 
-		'navbar main';
+	display: flex;
+}
+
+header {
+	width: 30%;
+	max-width: 200px;
+	height: 100%;
 }
 
 .navbar {
-	grid-area: navbar;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -61,9 +64,11 @@ nav a:hover {
 /* HOME PAGE */
 
 main {
-	grid-area: main;
+	width: 100%;
 	height: 100%;
 	background-color: var(--light-blue);
+	margin-left: 1fr;
+	overflow: scroll;
 }
 
 /* .sidebar {
@@ -75,7 +80,7 @@ main {
 	align-self: right;
 } */
 
-/* SIGN UP/LOG IN */
+/* -------------SIGN UP/LOG IN------------- */
 
 h1 {
 	text-align: center;
@@ -113,7 +118,6 @@ h1 {
 }
 
 .form-submit.btn {
-	border: .2rem solid white ;
 	background-color: var(--light-blue);
 	padding: .2rem;
 	height: 2rem;
@@ -122,7 +126,7 @@ h1 {
 	font-size: 1.2rem;
 }
 
-/* INDEX PAGE */
+/* -------------INDEX PAGE------------- */
 
 .artist-index-ctr {
 	display: flex;
@@ -180,8 +184,9 @@ h1 {
 	height: 1.5rem;
 }
 
-/* DETAILS PAGE */
+/* -------------DETAILS PAGE------------- */
 
+/* navbar section */
 .artist-info-render {
 	display: flex;
 	flex-direction: column;
@@ -202,6 +207,19 @@ h1 {
 	padding: .2rem
 }
 
+/* media section */
+
+.comments-ctr {
+	background-color: var(--blue);
+	box-shadow: 3px 3px 3px rgb(85, 85, 85);
+	display: flex;
+	justify-content: center;
+	margin: 1rem 1.3rem;
+	padding: .5rem;
+}
+
+/* experience section */
+
 .exp-ctr {
 	margin: .3rem;
 }
@@ -212,10 +230,20 @@ h1 {
 	flex-direction: column;
 	background-color: var(--accent);
 	margin: 1rem;
+	box-shadow: 3px 3px 3px rgb(85, 85, 85);
+}
+
+.show-exp-ctr {
+	box-shadow: none;
+	background-color: var(--light-blue);
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 h3 {
-	align-self: center;
+	display: flex;
+	justify-content: center;
 	font-size: 1.5rem;
 }
 
@@ -240,27 +268,120 @@ select {
 	height: 3rem;
 }
 
+.form-submit.btn.comment-btn,
 .form-submit.btn.exp-btn {
 	font-size: 1rem;
 	box-shadow: 2px 2px 2px rgb(36, 34, 34);
 }
 
-.show-exp-ctr {
-	display: flex;
-	flex-wrap: wrap;
-}
-
 .exp-div {
-	background-color: var(--light-blue);
-
+	margin: .5rem .5rem;
+	padding: .3rem;
+	width: 24rem;
+	background-color: var(--blue);
+	box-shadow: 3px 3px 3px rgb(85, 85, 85);
+	display: flex;
+	flex-direction: column;
 }
 
-
-@media (min-width: 900px) {
-
+.exp-link,
+.exp-type,
+.exp-date,
+.exp-img,
+.exp-note {
+	margin: .3rem;
+	padding: .2rem;
 }
 
-/* DELETE FORM */
+.exp-music,
+.exp-venue {
+	margin: 0rem;
+	padding: 0rem;
+}
+
+.exp-type:hover,
+.CRUD-exp a:hover {
+	color: var(--accent)
+}
+
+.exp-top,
+.CRUD-exp {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: .1rem .5rem;
+}
+
+.exp-mid,
+.exp-img-ctr {
+	display: flex;
+	justify-content: center;
+}
+
+.exp-img {
+	width: 18rem;
+}
+
+.CRUD-exp {
+	justify-content: space-evenly;
+	margin: .3rem;
+	padding: .1rem;
+	height: 100%;
+	align-items: flex-end;
+}
+
+@media (min-width: 800px) {
+	.exp-div {
+		width: 17rem;
+	}
+
+	.exp-img {
+		width: 12.75rem;
+	}
+
+	.exp-link,
+	.exp-type,
+	.exp-date,
+	.exp-img,
+	.exp-music,
+	.exp-venue,
+	.exp-note,
+	.CRUD-exp {
+		font-size: .9rem;
+	}
+}
+
+@media (min-width: 1100px) {
+	.artist-details-ctr {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.details-bottom-div {
+		display: flex;
+		justify-content: center;
+	}
+
+	.exp-div {
+		width: 11rem;
+	}
+	.exp-img {
+		width: 8.25rem;
+	}
+
+	.exp-link,
+	.exp-type,
+	.exp-date,
+	.exp-img,
+	.exp-music,
+	.exp-venue,
+	.exp-note,
+	.CRUD-exp {
+		font-size: .7rem;
+	}
+}
+
+/* -------------DELETE FORM------------- */
 
 .confirm-delete-form {
 	display: flex;

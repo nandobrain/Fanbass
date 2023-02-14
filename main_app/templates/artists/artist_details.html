@@ -2,50 +2,88 @@
 {% block content %}
 
 <div class="artist-details-ctr">
+  <div class="details-top-div">
 
-  
-  
-  <div class="exp-ctr">
-    <div class="add-exp-ctr">
-      <h3>Add An Experience</h3>
-      <form action="{% url 'experience_create' artist.id %}" method="POST" class="exp-form">
-        {% csrf_token %}
-        
-        <p><label>Experience Type: </label>{{ experience_form.experience_type }}</p>
-      
-        <div id="common-fields-1" style="display:none">
-          <p><label>Your Thoughts: </label>{{ experience_form.user_review }}</p>
-          <p><label>Date of Experience: </label>{{ experience_form.date_time }}</p>
+  </div>
+
+  <div class="details-bottom-div">
+
+    <div class="media-ctr">
+      <div class="comments-ctr">
+        <div class="show-comments">
+          {% for comment in artist.comment_set.all %}
+            <div class="note-div">
+              <div class="delete-note">
+                <a href="">X</a>
+              </div>
+              <p class="note">{{ comment.comment }}</p>
+            </div>
+            {% endfor %}
         </div>
-        
-        <div id="music-fields" style="display:none">
-          <p><label>Release Type: </label>{{ experience_form.music_type }}</p>
-        </div>
-      
-        <div id="show-fields" style="display:none">
-          <p><label>Venue Name: </label>{{ experience_form.show_venue_name }}</p>
-        </div>
-        <div id="common-fields-2" style="display:none">
-          <p><label>Link: </label>{{ experience_form.link }}</p>
-          <!-- Need to work out photo upload -->
-        </div>
-        <input type="submit" class="form-submit btn exp-btn" value="Add">
-      </form>
+        <form action="" method="POST" class="comment-form">
+          {% csrf_token %}
+          {{ comment_form.as_p }}
+          <input type="submit" value="Add" class="form-submit btn comment-btn">
+        </form>
+      </div>
     </div>
-
-    <div class="show-exp-ctr">
-      {% for experience in artist.experience_set.all %}
-        <div class="exp-div">
-          <a href="{{ experience.link }}"><p class="note">{{ experience.get_experience_type_display }}</p></a>
-          <p class="note">{{ experience.date_time }}</p>
-          <p class="note">{{ experience.get_music_type_display }}</p>
-          <p class="note">{{ experience.show_venue_name }}</p>
-          <p class="note">{{ experience.user_review }}</p>
-          <div class="CRUD-exp">
-            <a href="{% url 'experience_delete' experience.id %}">delete</a>
+    
+    <div class="exp-ctr">
+      <div class="add-exp-ctr">
+        <h3>Add An Experience</h3>
+        <form action="{% url 'experience_create' artist.id %}" method="POST" class="exp-form">
+          {% csrf_token %}
+          
+          <p><label>Experience Type: </label>{{ experience_form.experience_type }}</p>
+        
+          <div id="common-fields-1" style="display:none">
+            <p><label>Your Thoughts: </label>{{ experience_form.user_review }}</p>
+            <p><label>Date of Experience: </label>{{ experience_form.date_time }}</p>
           </div>
-        </div>
-        {% endfor %}
+          
+          <div id="music-fields" style="display:none">
+            <p><label>Release Type: </label>{{ experience_form.music_type }}</p>
+          </div>
+        
+          <div id="show-fields" style="display:none">
+            <p><label>Venue Name: </label>{{ experience_form.show_venue_name }}</p>
+          </div>
+          <div id="common-fields-2" style="display:none">
+            <p><label>Link: </label>{{ experience_form.link }}</p>
+            <!-- Need to work out photo upload -->
+          </div>
+          <input type="submit" class="form-submit btn exp-btn" value="Add">
+        </form>
+      </div>
+  
+      <div class="show-exp-ctr">
+        {% for experience in artist.experience_set.all %}
+          <div class="exp-div">
+            <div class="exp-top">
+              <a href="{{ experience.link }}" class="exp-link"><p class="exp-type">{{ experience.get_experience_type_display }}</p></a>
+              <p class="exp-date">{{ experience.date_time }}</p>
+            </div>
+            <div class="exp-img-ctr">
+              <img src="https://thatgrapejuice.net/wp-content/uploads/2023/02/Beyonce-renaissance-thatgrapejuice-wetter-remix-hot-100-cuff-it-2023.jpg" class="exp-img">
+            </div>
+            {% if experience.music_type %}
+            <div class="exp-mid">
+              <p class="exp-music">{{ experience.get_music_type_display }}</p>
+            </div>
+              {% endif %}
+              {% if experience.show_venue_name %}
+              <div class="exp-mid">
+                <p class="exp-venue">{{ experience.show_venue_name }}</p>
+              </div>
+              {% endif %}
+            <p class="exp-note">{{ experience.user_review }}</p>
+            <div class="CRUD-exp">
+              <a>edit</a>
+              <a href="{% url 'experience_delete' experience.id %}">delete</a>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
     </div>
   </div>
 </div>
