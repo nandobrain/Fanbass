@@ -266,7 +266,8 @@ select {
 }
 
 .exp-form select,
-.exp-form input {
+.exp-form input,
+.exp-form textarea {
 	display: block;
 	margin-top: .2rem;
 	color: var(--dark-blue)

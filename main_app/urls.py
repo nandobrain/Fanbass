@@ -13,7 +13,6 @@ urlpatterns = [
    path('artists/<int:pk>/experiences/<int:experience_id>/update/', views.ExperienceUpdate.as_view(), name='experience_update'),
    path('experiences/<int:pk>/delete/', views.ExperienceDelete.as_view(), name='experience_delete'),
    path('artists/<int:artist_id>/add_comment/', views.add_comment, name='add_comment'),
-   path('artists/<int:artist_id>/add_photo/', views.add_photo, name='add_photo'),
    path('accounts/signup/', views.signup, name='signup'),
    path('', views.home, name='home'),
 ]

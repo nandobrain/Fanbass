@@ -34,7 +34,7 @@
     <div class="exp-ctr">
       <div class="add-exp-ctr">
         <h3>Add An Experience</h3>
-        <form action="{% url 'experience_create' artist.id %}" method="POST" class="exp-form">
+        <form action="{% url 'experience_create' artist.id %}" method="POST" class="exp-form" enctype="multipart/form-data" >
           {% csrf_token %}
           
           <p><label>Experience Type: </label>{{ experience_form.experience_type }}</p>
@@ -53,7 +53,7 @@
           </div>
           <div id="common-fields-2" style="display:none">
             <p><label>Link: </label>{{ experience_form.link }}</p>
-            <!-- Need to work out photo upload -->
+            <input type="file" name="photo-file">
           </div>
           <input type="submit" class="form-submit btn exp-btn" value="Add">
         </form>
@@ -67,7 +67,7 @@
               <p class="exp-date">{{ experience.date_time }}</p>
             </div>
             <div class="exp-img-ctr">
-              <img src="https://thatgrapejuice.net/wp-content/uploads/2023/02/Beyonce-renaissance-thatgrapejuice-wetter-remix-hot-100-cuff-it-2023.jpg" class="exp-img">
+              <img src="{{ experience.photo.url }}" class="exp-img">
             </div>
             {% if experience.music_type %}
             <div class="exp-mid">
