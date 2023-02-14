@@ -4,8 +4,8 @@
 <h1>Library</h1>
 
 <div class="artist-index-ctr">
+	{% for artist in object_list %}
 	<div class="card-ctr">
-		{% for artist in object_list %}
 		<div class="card">
 			<a href="{% url 'artist_details' artist.id %}">
 			  <div class="img-ctr">
@@ -21,8 +21,8 @@
 			<div class="separator"></div>
 			<a href="{% url 'artist_delete' artist.id %}">delete</a>
 		</div>
-		{% endfor %}
 	</div>
+	{% endfor %}
 </div>
 
 {% endblock %}
