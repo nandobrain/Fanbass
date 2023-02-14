@@ -16,8 +16,6 @@ from django.urls import reverse
 
 # Create your views here.
 
-
-
 class ArtistDetail(DetailView):
    model = Artist
    template_name = 'artists/artist_details.html'
@@ -39,11 +37,9 @@ class ArtistCreate(CreateView):
        form.instance.user = self.request.user
        return super().form_valid(form)
 
-
 class ArtistUpdate(UpdateView):
    model = Artist
    fields =  ['members', 'description']
-
 
 class ArtistDelete(DeleteView):
    model = Artist
@@ -60,7 +56,7 @@ class ExperienceDetail(DetailView):
    
 class ExperienceCreate(CreateView):
    model = Experience
-   fields = ['user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
+   fields = ['experience_type','user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
    success_url = '/artists'
 
    def get_success_url(self):
@@ -81,6 +77,7 @@ class ExperienceUpdate(UpdateView):
 
 class ExperienceDelete(DeleteView):
    model = Experience
+
    
 
 def add_comment(request, artist_id):
