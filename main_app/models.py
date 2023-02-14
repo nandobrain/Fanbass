@@ -60,7 +60,7 @@ class Experience(models.Model):
     EP = 'EP'
     FEATURE = 'FE'
     MUSIC_TYPE = [
-        (ALBUM, 'ALBUM'),
+        (ALBUM, 'Album'),
         (SINGLE, 'Single'),
         (MIXTAPE, 'Mixtape'),
         (EP, 'EP'),
