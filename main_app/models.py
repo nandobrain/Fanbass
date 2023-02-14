@@ -68,7 +68,9 @@ class Experience(models.Model):
     ]
     music_type = models.CharField(
         max_length=2,
-        choices=MUSIC_TYPE
+        choices=MUSIC_TYPE,
+        blank=True,
+        null=True
     )
 
     show_venue_name = models.CharField(
@@ -84,7 +86,6 @@ class Experience(models.Model):
     
     def get_absolute_url(self):
         return reverse('artist_details', kwargs={'pk': self.id})
-
 
 
 class Comment(models.Model):

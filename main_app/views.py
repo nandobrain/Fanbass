@@ -39,7 +39,7 @@ class ArtistCreate(CreateView):
 
 class ArtistUpdate(UpdateView):
    model = Artist
-   fields =  ['name', 'members', 'description']
+   fields =  ['members', 'description']
 
 class ArtistDelete(DeleteView):
    model = Artist
@@ -56,7 +56,7 @@ class ExperienceDetail(DetailView):
    
 class ExperienceCreate(CreateView):
    model = Experience
-   fields = ['user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
+   fields = ['experience_type','user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
    success_url = '/artists'
 
    def get_success_url(self):
@@ -70,13 +70,13 @@ class ExperienceCreate(CreateView):
       form.instance.artist = artist
       return super().form_valid(form)
 
+
 class ExperienceUpdate(UpdateView):
    model = Experience
    fields = '__all__'
 
 class ExperienceDelete(DeleteView):
    model = Experience
-   success_url = '/artists'
    
 
 def add_comment(request, artist_id):
