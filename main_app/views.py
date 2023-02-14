@@ -54,6 +54,24 @@ class ExperienceList(ListView):
 class ExperienceDetail(DetailView):
    model = Experience
    
+
+# class ExperienceCreate(CreateView):
+#    model = Experience
+#    fields = ['experience_type','user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
+#    success_url = '/artists'
+
+#    def get_success_url(self):
+#       pk = self.kwargs['pk']
+#       return reverse('artist_details', kwargs={'pk': pk})
+
+#    def form_valid(self, form):
+#       form.instance.user = self.request.user
+#       pk = self.kwargs['pk']
+#       artist = Artist.objects.get(id=pk)
+#       form.instance.artist = artist
+#       return super().form_valid(form) 
+
+
 class ExperienceCreate(CreateView):
    model = Experience
    fields = ['experience_type','user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
@@ -68,8 +86,32 @@ class ExperienceCreate(CreateView):
       pk = self.kwargs['pk']
       artist = Artist.objects.get(id=pk)
       form.instance.artist = artist
-      return super().form_valid(form)
+      return super().form_valid(form) 
 
+   def post(self, request, *args, **kwargs):
+      self.object = None
+      # experience_id = self.kwargs['pk']
+      experience = Experience.objects.last()
+      experience_id = experience.id
+      print(request)
+
+      photo_file = request.FILES.get('photo-file', None)
+      if photo_file:
+         s3 = boto3.client('s3')
+         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+      try:
+          bucket = os.environ['S3_BUCKET']
+          s3.upload_fileobj(photo_file, bucket, key)
+          url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+          Photo.objects.create(url=url, experience_id=experience_id)
+          print(url)
+          print(experience_id)
+      except Exception as e:
+          print('An error occurred uploading file to S3')
+          print(e)
+
+      return super().post(request, *args, **kwargs)
+   
 
 class ExperienceUpdate(UpdateView):
    model = Experience

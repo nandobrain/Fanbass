@@ -38,7 +38,7 @@ class Experience(models.Model):
         choices=EXPERIENCE_TYPE
     )
 
-    user_review = models.CharField(
+    user_review = models.TextField(
         max_length=500,
         blank=True,
         null=True
@@ -89,11 +89,9 @@ class Experience(models.Model):
 
 
 class Comment(models.Model):
-    comment = models.CharField(max_length=250)
+    comment = models.TextField(max_length=250)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.user}'s comment on {self.experience}"
@@ -104,8 +102,8 @@ class Comment(models.Model):
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True, null=True)
+    experience = models.ForeignKey(Experience, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f"Photo" 
