@@ -1,37 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-<h3>Add An Experience</h3>
-<form action="{% url 'experience_create' artist.id %}" method="POST">
-  {% csrf_token %}
-  
-  <p><label>Experience Type: </label>{{ experience_form.experience_type }}</p>
-
-  <div id="common-fields-1" style="display:none">
-    <p><label>Your Thoughts: </label>{{ experience_form.user_review }}</p>
-    <p><label>Date of Experience: </label>{{ experience_form.date_time }}</p>
-  </div>
-  
-  <div id="music-fields" style="display:none">
-    <p><label>Release Type: </label>{{ experience_form.music_type }}</p>
-  </div>
-
-  <div id="show-fields" style="display:none">
-    <p><label>Venue Name: </label>{{ experience_form.show_venue_name }}</p>
-  </div>
-
-  <div id="common-fields-2" style="display:none">
-    <p><label>Link: </label>{{ experience_form.link }}</p>
-    <!-- Need to work out photo upload -->
-  </div>
+<div class="artist-details-ctr">
 
   
+  
+  <div class="exp-ctr">
+    <div class="add-exp-ctr">
+      <h3>Add An Experience</h3>
+      <form action="{% url 'experience_create' artist.id %}" method="POST" class="exp-form">
+        {% csrf_token %}
+        
+        <p><label>Experience Type: </label>{{ experience_form.experience_type }}</p>
+      
+        <div id="common-fields-1" style="display:none">
+          <p><label>Your Thoughts: </label>{{ experience_form.user_review }}</p>
+          <p><label>Date of Experience: </label>{{ experience_form.date_time }}</p>
+        </div>
+        
+        <div id="music-fields" style="display:none">
+          <p><label>Release Type: </label>{{ experience_form.music_type }}</p>
+        </div>
+      
+        <div id="show-fields" style="display:none">
+          <p><label>Venue Name: </label>{{ experience_form.show_venue_name }}</p>
+        </div>
+        <div id="common-fields-2" style="display:none">
+          <p><label>Link: </label>{{ experience_form.link }}</p>
+          <!-- Need to work out photo upload -->
+        </div>
+        <input type="submit" class="form-submit btn exp-btn" value="Add">
+      </form>
+    </div>
 
-  <input type="submit" class="btn" value="Add Test">
-</form>
-<br>
-<br>
+    <div class="show-exp-ctr">
+      {% for experience in artist.experience_set.all %}
+        <div class="exp-div">
+          <a href="{{ experience.link }}"><p class="note">{{ experience.get_experience_type_display }}</p></a>
+          <p class="note">{{ experience.date_time }}</p>
+          <p class="note">{{ experience.get_music_type_display }}</p>
+          <p class="note">{{ experience.show_venue_name }}</p>
+          <p class="note">{{ experience.user_review }}</p>
+          <div class="CRUD-exp">
+            <a href="{% url 'experience_delete' artist.id experience.id %}">delete</a>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
 
 
 <script>

@@ -107,6 +107,7 @@ h1 {
 	font-size: 1.5rem;
 }
 
+.exp-form input:focus,
 .form input:focus {
 	outline: none !important;
 }
@@ -199,6 +200,64 @@ h1 {
 	width: 53%;
 	text-align: center;
 	padding: .2rem
+}
+
+.exp-ctr {
+	margin: .3rem;
+}
+
+.show-exp-ctr,
+.add-exp-ctr {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--accent);
+	margin: 1rem;
+}
+
+h3 {
+	align-self: center;
+	font-size: 1.5rem;
+}
+
+select {
+	color: var(--dark-blue)
+}
+
+.exp-form {
+	margin: 3rem;
+	margin-top: 0;
+}
+
+.exp-form select,
+.exp-form input {
+	display: block;
+	margin-top: .2rem;
+	color: var(--dark-blue)
+}
+
+#id_user_review {
+	width: 20rem;
+	height: 3rem;
+}
+
+.form-submit.btn.exp-btn {
+	font-size: 1rem;
+	box-shadow: 2px 2px 2px rgb(36, 34, 34);
+}
+
+.show-exp-ctr {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.exp-div {
+	background-color: var(--light-blue);
+
+}
+
+
+@media (min-width: 900px) {
+
 }
 
 /* DELETE FORM */
