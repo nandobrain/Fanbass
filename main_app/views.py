@@ -22,6 +22,7 @@ class ArtistDetail(DetailView):
    def get_context_data(self, **kwargs):
       context = super(ArtistDetail, self).get_context_data(**kwargs)
       context['experience_form'] = ExperienceForm()
+      context['comment_form'] = CommentForm()
       return context
 
 class ArtistList(ListView):
