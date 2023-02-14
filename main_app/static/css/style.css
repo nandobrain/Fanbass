@@ -112,6 +112,7 @@ h1 {
 	font-size: 1.5rem;
 }
 
+.comment-form input:focus,
 .exp-form input:focus,
 .form input:focus {
 	outline: none !important;
@@ -218,6 +219,14 @@ h1 {
 	padding: .5rem;
 }
 
+.comment-form label {
+	display: none;
+}
+
+#id_comment {
+	color: var(--dark-blue)
+}
+
 /* experience section */
 
 .exp-ctr {
@@ -272,6 +281,7 @@ select {
 .form-submit.btn.exp-btn {
 	font-size: 1rem;
 	box-shadow: 2px 2px 2px rgb(36, 34, 34);
+	color: white;
 }
 
 .exp-div {
@@ -284,7 +294,6 @@ select {
 	flex-direction: column;
 }
 
-.exp-link,
 .exp-type,
 .exp-date,
 .exp-img,
@@ -339,7 +348,6 @@ select {
 		width: 12.75rem;
 	}
 
-	.exp-link,
 	.exp-type,
 	.exp-date,
 	.exp-img,
@@ -369,7 +377,6 @@ select {
 		width: 8.25rem;
 	}
 
-	.exp-link,
 	.exp-type,
 	.exp-date,
 	.exp-img,

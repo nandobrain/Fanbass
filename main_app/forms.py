@@ -4,7 +4,7 @@ from . models import Comment, Experience
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ['experience']
+        fields = ['comment']
 
 class ExperienceForm(ModelForm):
   class Meta:

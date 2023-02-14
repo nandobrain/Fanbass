@@ -10,21 +10,24 @@
 
     <div class="media-ctr">
       <div class="comments-ctr">
+        <form action="{% url 'add_comment' artist.id %}" method="POST" class="comment-form">
+          {% csrf_token %}
+          {{ comment_form.as_p }}
+          <input type="submit" value="Add" class="form-submit btn comment-btn">
+        </form>
         <div class="show-comments">
           {% for comment in artist.comment_set.all %}
-            <div class="note-div">
-              <div class="delete-note">
-                <a href="">X</a>
+            <div class="comment-div">
+              <div class="comment-header">
+                <p>{{ comment.user }}</p>
+                <div class="delete-comment">
+                  <a href="">X</a>
+                </div>
               </div>
               <p class="note">{{ comment.comment }}</p>
             </div>
             {% endfor %}
         </div>
-        <form action="" method="POST" class="comment-form">
-          {% csrf_token %}
-          {{ comment_form.as_p }}
-          <input type="submit" value="Add" class="form-submit btn comment-btn">
-        </form>
       </div>
     </div>
     
@@ -60,7 +63,7 @@
         {% for experience in artist.experience_set.all %}
           <div class="exp-div">
             <div class="exp-top">
-              <a href="{{ experience.link }}" class="exp-link"><p class="exp-type">{{ experience.get_experience_type_display }}</p></a>
+              <p class="exp-type">{{ experience.get_experience_type_display }}</p>
               <p class="exp-date">{{ experience.date_time }}</p>
             </div>
             <div class="exp-img-ctr">
@@ -78,6 +81,9 @@
               {% endif %}
             <p class="exp-note">{{ experience.user_review }}</p>
             <div class="CRUD-exp">
+              {% if experience.link %}
+              <a href="{{ experience.link }}" class="exp-link">link</a>
+              {% endif %}
               <a>edit</a>
               <a href="{% url 'experience_delete' experience.id %}">delete</a>
             </div>
