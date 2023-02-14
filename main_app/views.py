@@ -77,7 +77,8 @@ class ExperienceUpdate(UpdateView):
 
 class ExperienceDelete(DeleteView):
    model = Experience
-   
+   success_url = '/artists'
+
 
 def add_comment(request, artist_id):
    form = CommentForm(request.POST)

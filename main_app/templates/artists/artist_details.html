@@ -42,7 +42,7 @@
           <p class="note">{{ experience.show_venue_name }}</p>
           <p class="note">{{ experience.user_review }}</p>
           <div class="CRUD-exp">
-            <a href="{% url 'experience_delete' artist.id experience.id %}">delete</a>
+            <a href="{% url 'experience_delete' experience.id %}">delete</a>
           </div>
         </div>
         {% endfor %}
