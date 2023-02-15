@@ -122,6 +122,18 @@ class CommentCreate(CreateView):
       pk = self.kwargs['pk']
       return reverse('artist_details', kwargs={'pk': pk})
 
+
+class CommentUpdate(UpdateView):
+   model = Comment
+   fields = ['comment']
+   
+   def get_success_url(self):
+      return reverse('artist_index')
+
+class CommentDelete(DeleteView):
+   model = Comment
+   success_url = 'artist_index'
+
 def signup(request):
  error_message = ''
  if request.method == 'POST':
