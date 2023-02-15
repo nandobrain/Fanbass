@@ -100,7 +100,6 @@ class ExperienceDelete(DeleteView):
    
    def get_success_url(self):
       artist = self.object.artist 
-      print(artist)
       return reverse('artist_details', kwargs={'pk' : artist.id})
 
 
