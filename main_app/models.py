@@ -85,7 +85,7 @@ class Experience(models.Model):
         return f"{self.experience_type} experience on {self.artist}"
     
     def get_absolute_url(self):
-        return reverse('artist_details', kwargs={'pk': self.id})
+        return reverse('artist_index')
 
 
 class Comment(models.Model):
@@ -93,11 +93,13 @@ class Comment(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+
     def __str__(self):
-        return f"{self.user}'s comment on {self.experience}"
+        return f"{self.user}'s comment on {self.artist}"
     
-    # def get_absolute_url(self):
-        # return reverse('comment_detail', kwargs={'comment_id': self.id})
+    def get_absolute_url(self):
+        return reverse('artist_index', kwargs={'pk': self.id})
 
 
 class Photo(models.Model):
