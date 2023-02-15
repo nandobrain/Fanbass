@@ -24,8 +24,8 @@
               <div class="comment-header">
                 <p>{{ comment.user }}</p>
                 <div class="delete-comment">
-                  <a href="">edit</a>
-                  <a href="">X</a>
+                  <a href="{% url 'comment_delete' comment.id %}">X</a>
+                  <a href="{% url 'comment_update' comment.id %}">edit</a>
                 </div>
               </div>
               <p class="comment-content">{{ comment.comment }}</p>

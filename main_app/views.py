@@ -30,6 +30,11 @@ class ArtistList(ListView):
    model = Artist  
    template_name = 'artists/artist_list.html'
 
+   def get_queryset(self):
+        queryset = super(ArtistList, self).get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
+
 class ArtistCreate(CreateView):
    model = Artist
    fields = ['name']
@@ -100,7 +105,6 @@ class ExperienceDelete(DeleteView):
    
    def get_success_url(self):
       artist = self.object.artist 
-      print(artist)
       return reverse('artist_details', kwargs={'pk' : artist.id})
 
 
@@ -119,6 +123,22 @@ class CommentCreate(CreateView):
    def get_success_url(self):
       pk = self.kwargs['pk']
       return reverse('artist_details', kwargs={'pk': pk})
+
+
+class CommentUpdate(UpdateView):
+   model = Comment
+   fields = ['comment']
+   
+   def get_success_url(self):
+      artist = self.object.artist 
+      return reverse('artist_details', kwargs={'pk' : artist.id})
+
+class CommentDelete(DeleteView):
+   model = Comment
+
+   def get_success_url(self):
+      artist = self.object.artist 
+      return reverse('artist_details', kwargs={'pk' : artist.id})
 
 def signup(request):
  error_message = ''
