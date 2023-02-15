@@ -10,7 +10,7 @@
 
     <div class="media-ctr">
       <div class="comments-ctr">
-        <form action="{% url 'add_comment' artist.id %}" method="POST" class="comment-form">
+        <form action="{% url 'comment_create' artist.id %}" method="POST" class="comment-form">
           {% csrf_token %}
           {{ comment_form.as_p }}
           <input type="submit" value="Add" class="form-submit btn comment-btn">
@@ -64,7 +64,7 @@
           <div class="exp-div">
             <div class="exp-top">
               <p class="exp-type">{{ experience.get_experience_type_display }}</p>
-              <p class="exp-date">{{ experience.date_time }}</p>
+              <p class="exp-date">{{ experience.date_time|date:"m/d/Y" }}</p>
             </div>
             <div class="exp-img-ctr">
               <img src="{{ experience.photo.url }}" class="exp-img">
