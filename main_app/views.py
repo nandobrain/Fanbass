@@ -100,7 +100,6 @@ class ExperienceDelete(DeleteView):
    
    def get_success_url(self):
       artist = self.object.artist 
-      print(artist)
       return reverse('artist_details', kwargs={'pk' : artist.id})
 
 
@@ -126,11 +125,15 @@ class CommentUpdate(UpdateView):
    fields = ['comment']
    
    def get_success_url(self):
-      return reverse('artist_index')
+      artist = self.object.artist 
+      return reverse('artist_details', kwargs={'pk' : artist.id})
 
 class CommentDelete(DeleteView):
    model = Comment
-   success_url = 'artist_index'
+
+   def get_success_url(self):
+      artist = self.object.artist 
+      return reverse('artist_details', kwargs={'pk' : artist.id})
 
 def signup(request):
  error_message = ''

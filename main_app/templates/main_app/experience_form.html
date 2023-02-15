@@ -3,17 +3,29 @@
 {% block content %}
 
 	{% if object %}
-	<h1>Edit <span class="blue-text">{{ object.name }}</span></h1>
-	{% endif %}
-  
+	<h1>Edit Comment</h1>
 	<div class="form-ctr">
-	<form class="form edit-exp-form" action="" method="POST">
-		{% csrf_token %}
-		<table class="experience-form-table">
-			{{ form.as_p }}
-		</table>
-		<input type="submit" value="Add!" class="form-submit btn">
-	</form>
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            <table class="artist-form-table">
+                {{ form.as_p }}
+            </table>
+            <input type="submit" value="Submit!" class="form-submit btn">
+        </form>
+    </div>
+    
+    {% else %}
+	<h1>Add Comment</h1>
+	<div class="form-ctr">
+	    <form class="form" action="" method="POST">
+            {% csrf_token %}
+            <table class="artist-form-table">
+                {{ form.as_p }}
+            </table>
+            <input type="submit" value="Add!" class="form-submit btn">
+	    </form>
 	</div>
+    
+    {% endif %}
 
-{% endblock %}
+    {% endblock %}
