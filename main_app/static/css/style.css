@@ -214,9 +214,30 @@ h1 {
 	background-color: var(--blue);
 	box-shadow: 3px 3px 3px rgb(85, 85, 85);
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	margin: 1rem 1.3rem;
 	padding: .5rem;
+}
+
+.comment-form-ctr {
+	width: 100%;
+	background-color: var(--accent);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.comment-form-ctr h3 {
+	margin: .5rem;
+	padding-top: .5rem;
+}
+
+.comment-form {
+	width: 25rem;
+	padding-bottom: .8rem;
 }
 
 .comment-form label {
@@ -224,7 +245,49 @@ h1 {
 }
 
 #id_comment {
-	color: var(--dark-blue)
+	color: var(--dark-blue);
+	width: 100%;
+}
+
+.show-comments {
+	width: 25rem;
+	margin-top: 1rem;
+}
+
+.comment-div {
+	margin: .5rem;
+	padding: .4rem;
+	border: .1rem solid white;
+}
+
+.comment-div p {
+	margin: .2rem;
+}
+
+.comment-header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	border-bottom: .1rem solid white;
+}
+
+.comment-content {
+	white-space: pre-line;
+}
+
+.comment-header p,
+.comment-header a {
+	font-size: .8rem;
+}
+
+.delete-comment {
+	width: 2.5rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.delete-comment a:hover {
+	color: var(--accent)
 }
 
 /* experience section */
@@ -288,7 +351,7 @@ select {
 .exp-div {
 	margin: .5rem .5rem;
 	padding: .3rem;
-	width: 24rem;
+	width: 28rem;
 	background-color: var(--blue);
 	box-shadow: 3px 3px 3px rgb(85, 85, 85);
 	display: flex;
@@ -340,9 +403,17 @@ select {
 	align-items: flex-end;
 }
 
+.edit-exp-form input {
+	font-size: 1rem;
+}
+
+.edit-exp-form textarea {
+	color: var(--dark-blue)
+}
+
 @media (min-width: 800px) {
 	.exp-div {
-		width: 17rem;
+		width: 22rem;
 	}
 
 	.exp-img {
@@ -361,6 +432,15 @@ select {
 }
 
 @media (min-width: 1100px) {
+
+	.comment-form {
+		width: 20rem;
+	}
+
+	.comment-content {
+		font-size: .9rem;
+	}
+
 	.artist-details-ctr {
 		display: flex;
 		flex-direction: column;
@@ -371,8 +451,16 @@ select {
 		justify-content: center;
 	}
 
+	/* .media-ctr {
+		width: 40%;
+	}
+
 	.exp-div {
-		width: 11rem;
+		width: 60%;
+	} */
+
+	.exp-div {
+		width: 18rem;
 	}
 	.exp-img {
 		width: 8.25rem;
@@ -385,7 +473,7 @@ select {
 	.exp-venue,
 	.exp-note,
 	.CRUD-exp {
-		font-size: .7rem;
+		font-size: .9rem;
 	}
 }
 
