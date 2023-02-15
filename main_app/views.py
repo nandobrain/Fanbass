@@ -2,6 +2,7 @@
 import uuid
 import boto3
 import os
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, ListView
@@ -59,7 +60,6 @@ class ExperienceDetail(DetailView):
 class ExperienceCreate(CreateView):
    model = Experience
    fields = ['experience_type','user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
-   success_url = '/artists'
 
    def get_success_url(self):
       pk = self.kwargs['pk']
@@ -70,40 +70,38 @@ class ExperienceCreate(CreateView):
       pk = self.kwargs['pk']
       artist = Artist.objects.get(id=pk)
       form.instance.artist = artist
-      return super().form_valid(form) 
 
-   def post(self, request, *args, **kwargs):
-      self.object = None
-      # experience_id = self.kwargs['pk']
-      experience = Experience.objects.last()
-      experience_id = experience.id
-      print(request)
-
-      photo_file = request.FILES.get('photo-file', None)
+      self.object = form.save()
+      photo_file = form.files.get('photo-file', None)
       if photo_file:
          s3 = boto3.client('s3')
          key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-      try:
-          bucket = os.environ['S3_BUCKET']
-          s3.upload_fileobj(photo_file, bucket, key)
-          url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-          Photo.objects.create(url=url, experience_id=experience_id)
-          print(url)
-          print(experience_id)
-      except Exception as e:
-          print('An error occurred uploading file to S3')
-          print(e)
-
-      return super().post(request, *args, **kwargs)
+         try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            Photo.objects.create(url=url, experience_id=self.object.id)
+         except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+      return HttpResponseRedirect(self.get_success_url()) 
    
 
 class ExperienceUpdate(UpdateView):
    model = Experience
    fields = '__all__'
 
+   def get_success_url(self):
+    artist = self.object.artist 
+    return reverse( 'artist_details', kwargs={'pk': artist.pk})
+
 class ExperienceDelete(DeleteView):
    model = Experience
-   success_url = '/artists'
+   
+   def get_success_url(self):
+      artist = self.object.artist 
+      print(artist)
+      return reverse('artist_details', kwargs={'pk' : artist.id})
 
 
 class CommentCreate(CreateView):
