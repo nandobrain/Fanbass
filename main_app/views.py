@@ -30,6 +30,11 @@ class ArtistList(ListView):
    model = Artist  
    template_name = 'artists/artist_list.html'
 
+   def get_queryset(self):
+        queryset = super(ArtistList, self).get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
+
 class ArtistCreate(CreateView):
    model = Artist
    fields = ['name']
