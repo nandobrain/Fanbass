@@ -13,7 +13,8 @@ urlpatterns = [
    path('experiences/<int:pk>/update/', views.ExperienceUpdate.as_view(), name='experience_update'),
    path('experiences/<int:pk>/delete/', views.ExperienceDelete.as_view(), name='experience_delete'),
    path('artists/<int:pk>/comments/create/', views.CommentCreate.as_view(), name='comment_create'),
+   path('comments/<int:pk>/update', views.CommentUpdate.as_view(), name='comment_update'),
+   path('comments/<int:pk>/delete/', views.CommentDelete.as_view(), name='comment_delete'),
    path('accounts/signup/', views.signup, name='signup'),
    path('', views.home, name='home'),
 ]
-
