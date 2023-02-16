@@ -2,6 +2,7 @@
 import uuid
 import boto3
 import os
+import requests
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -15,9 +16,12 @@ from .models import Artist, Experience, User, Comment
 from .forms import CommentForm, ExperienceForm
 from django.urls import reverse
 
+DISCOGS_BASE_URL = 'https://api.discogs.com/'
+
+
 # Create your views here.
 
-class ArtistDetail(DetailView):
+class ArtistDetail(LoginRequiredMixin, DetailView):
    model = Artist
    template_name = 'artists/artist_details.html'
    def get_context_data(self, **kwargs):
@@ -26,7 +30,7 @@ class ArtistDetail(DetailView):
       context['comment_form'] = CommentForm()
       return context
 
-class ArtistList(ListView):
+class ArtistList(LoginRequiredMixin, ListView):
    model = Artist  
    template_name = 'artists/artist_list.html'
 
@@ -35,32 +39,35 @@ class ArtistList(ListView):
         queryset = queryset.filter(user=self.request.user)
         return queryset
 
-class ArtistCreate(CreateView):
+class ArtistCreate(LoginRequiredMixin, CreateView):
    model = Artist
-   fields = ['name']
+   fields = ['name', 'video']
    success_url = '/artists'
 
    def form_valid(self, form):
-       form.instance.user = self.request.user
-       return super().form_valid(form)
+      form.instance.user = self.request.user
+      response = requests.get(f"{DISCOGS_BASE_URL}artists/?key={os.environ['DISCOGS_CONSUMER_KEY']}&secret={os.environ['DISCOGS_CONSUMER_SECRET']}")
+      data = response.json()
+      print(data)
+      return super().form_valid(form)
 
-class ArtistUpdate(UpdateView):
+class ArtistUpdate(LoginRequiredMixin, UpdateView):
    model = Artist
-   fields =  ['members', 'description']
+   fields =  ['members', 'description', 'video']
 
-class ArtistDelete(DeleteView):
+class ArtistDelete(LoginRequiredMixin, DeleteView):
    model = Artist
    success_url = '/artists'
 
-class ExperienceList(ListView):
+class ExperienceList(LoginRequiredMixin, ListView):
    model = Experience
 
 
-class ExperienceDetail(DetailView):
+class ExperienceDetail(LoginRequiredMixin, DetailView):
    model = Experience
 
 
-class ExperienceCreate(CreateView):
+class ExperienceCreate(LoginRequiredMixin, CreateView):
    model = Experience
    fields = ['experience_type','user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
 
@@ -90,7 +97,7 @@ class ExperienceCreate(CreateView):
       return HttpResponseRedirect(self.get_success_url()) 
    
 
-class ExperienceUpdate(UpdateView):
+class ExperienceUpdate(LoginRequiredMixin, UpdateView):
    model = Experience
    fields = '__all__'
 
@@ -103,7 +110,7 @@ class ExperienceUpdate(UpdateView):
     artist = self.object.artist 
     return reverse( 'artist_details', kwargs={'pk': artist.pk})
 
-class ExperienceDelete(DeleteView):
+class ExperienceDelete(LoginRequiredMixin, DeleteView):
    model = Experience
    
    def get_success_url(self):
@@ -111,7 +118,7 @@ class ExperienceDelete(DeleteView):
       return reverse('artist_details', kwargs={'pk' : artist.id})
 
 
-class CommentCreate(CreateView):
+class CommentCreate(LoginRequiredMixin, CreateView):
    model = Comment
    fields = ['comment']
 
@@ -128,7 +135,7 @@ class CommentCreate(CreateView):
       return reverse('artist_details', kwargs={'pk': pk})
 
 
-class CommentUpdate(UpdateView):
+class CommentUpdate(LoginRequiredMixin, UpdateView):
    model = Comment
    fields = ['comment']
    
@@ -136,7 +143,7 @@ class CommentUpdate(UpdateView):
       artist = self.object.artist 
       return reverse('artist_details', kwargs={'pk' : artist.id})
 
-class CommentDelete(DeleteView):
+class CommentDelete(LoginRequiredMixin, DeleteView):
    model = Comment
 
    def get_success_url(self):

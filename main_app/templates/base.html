@@ -19,7 +19,11 @@
 			<div class="artist-info-render">
 				{% if artist %}
 				<div class="nav-artist-img">
-					<img src="https://pbs.twimg.com/profile_images/1133109643734130688/BwioAwkz_400x400.jpg">
+					{% if artist.profile_photo %}
+					<img src="{{ artist.profile_photo }}">
+					{% else %}
+					<img src="https://i.imgur.com/d0fnZch.png%22%3E">
+					{% endif %}
 				</div>
 				<div class="nav-artist-name">
 					{{ artist.name }}
@@ -28,11 +32,7 @@
 			</div>
 			<nav>
 				{% if user.is_authenticated %}
-				{% if artist %}
-				<a href="">ADD EXPERIENCE</a>
-				{% endif %}
 				<a href="{% url 'artist_create' %}">ADD TO LIBRARY</a>
-				<a href="{% url 'home' %}">HOME</a>
 				<a href="{% url 'artist_index' %}">LIBRARY</a>
 				<a href="{% url 'logout' %}">LOGOUT</a>
 				{% else %}
@@ -40,6 +40,9 @@
 				<a href="{% url 'signup' %}">SIGN UP</a>
 				<a href="{% url 'login' %}">LOG IN</a>
 				{% endif %}
+				<div class="logo-ctr">
+					<img class="logo" src="https://i.imgur.com/4iT6dFJ.png">
+				</div>
 			</nav>
 		</div>
 	</header>
