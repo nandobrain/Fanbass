@@ -2,30 +2,48 @@
 
 {% block content %}
 
-	{% if object %}
-	<h1>Edit Comment</h1>
+	<h1>Edit Experience</h1>
 	<div class="form-ctr">
         <form class="form" action="" method="POST">
             {% csrf_token %}
-            <table class="artist-form-table">
-                {{ form.as_p }}
+            <table class="experience-form-table">
+                <div id="common-fields-1" style="display:none">
+
             </table>
-            <input type="submit" value="Submit!" class="form-submit btn">
+                <input type="submit" value="Submit!" class="form-submit btn">
         </form>
     </div>
-    
-    {% else %}
-	<h1>Add Comment</h1>
-	<div class="form-ctr">
-	    <form class="form" action="" method="POST">
-            {% csrf_token %}
-            <table class="artist-form-table">
-                {{ form.as_p }}
-            </table>
-            <input type="submit" value="Add!" class="form-submit btn">
-	    </form>
-	</div>
-    
-    {% endif %}
 
-    {% endblock %}
+
+<script>
+
+    function addHideAttribute(){
+            document.getElementById('id_experience_type').setAttribute('onchange', 'experienceFormFormat(this.value)');
+    };
+    
+    window.onload = addHideAttribute;
+    
+        function experienceFormFormat (val) {
+        console.log(val)
+        if(val === "MU") {
+            document.getElementById('common-fields-1').style.display="block";
+            document.getElementById('music-fields').style.display="block";
+            document.getElementById('show-fields').style.display="none";
+            document.getElementById('common-fields-2').style.display="block";
+        } else if(val === "SH") {
+            document.getElementById('common-fields-1').style.display="block";
+            document.getElementById('music-fields').style.display="none";
+            document.getElementById('show-fields').style.display="block";
+            document.getElementById('common-fields-2').style.display="block";    
+        } else {
+            document.getElementById('common-fields-1').style.display="block";
+            document.getElementById('music-fields').style.display="none";
+            document.getElementById('show-fields').style.display="none";
+            document.getElementById('common-fields-2').style.display="block";    
+        }
+    }
+    
+    
+    
+</script>
+{% endblock %}
