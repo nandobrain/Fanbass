@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from embed_video.fields import EmbedVideoField
 
 
 # Create your models here.
@@ -13,7 +14,7 @@ class Artist(models.Model):
         blank=True,
         null=True
     )
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -115,3 +116,8 @@ class Photo(models.Model):
     def __str__(self):
         return f"Photo" 
         # Needs some improvement - passing into two different models.
+
+
+class Video(models.Model):
+    title = models.CharField(max_length=200)
+    url = EmbedVideoField()
