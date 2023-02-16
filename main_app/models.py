@@ -26,14 +26,12 @@ class Artist(models.Model):
 
 class Experience(models.Model):
     MUSIC = 'MU'
-    VIDEO = 'VI'
     SHOW = 'SH'
     MERCHANDISE = 'ME'
     SOCIAL_MEDIA = 'SO'
     NEWS = 'NE'
     EXPERIENCE_TYPE = [
         (MUSIC, 'Music'),
-        (VIDEO, 'Video'),
         (SHOW, 'Show'),
         (MERCHANDISE, 'Merchandise'),
         (SOCIAL_MEDIA, 'Social Media'),
@@ -120,4 +118,10 @@ class Photo(models.Model):
 
 class Video(models.Model):
     title = models.CharField(max_length=200)
-    url = EmbedVideoField()
+    description = models.TextField()
+    url_link = models.URLField()
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def str(self):
+        return f"video"

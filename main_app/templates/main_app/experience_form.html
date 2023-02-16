@@ -4,44 +4,65 @@
 
 	<h1>Edit Experience</h1>
 	<div class="form-ctr">
-        <form class="form" action="" method="POST">
+        <form class="form" class="experience-form" action="" method="POST">
             {% csrf_token %}
-            <table class="experience-form-table">
                 <div id="common-fields-1" style="display:none">
-
-            </table>
-                <input type="submit" value="Submit!" class="form-submit btn">
+                    <div><label>Experience Type: </label>
+                    {{ form.experience_type }}</div>
+                    <div><label>Your Thoughts: </label>
+                    {{ form.user_review }}</div>
+                    <div><label>Date of Experience: </label>
+                    {{ form.date_time }}</div>
+                </div>
+                <div id="music-fields" style="display:none">
+                    <label>Release Type: </label>
+                    {{ form.music_type }}
+                </div>
+                <div id="show-fields" style="display:none">
+                    <label>Venue Name: </label>
+                    {{ form.show_venue_name }}
+                </div>
+                <div id="common-fields-2" style="display:none">
+                    <label>Link: </label>
+                    {{ form.link }}
+                </div>
+            <input type="submit" value="Submit!" class="form-submit btn">
         </form>
     </div>
 
 
 <script>
 
-    function addHideAttribute(){
-            document.getElementById('id_experience_type').setAttribute('onchange', 'experienceFormFormat(this.value)');
-    };
+function addHideAttribute(){
+    console.log("Add Hide Attribute firing")
+    const experienceType = document.getElementById('id_experience_type')
+    val = experienceType.value
+    console.log(val)
+    experienceFormFormat(val)
+};
+
+window.onload = addHideAttribute;
     
-    window.onload = addHideAttribute;
-    
-        function experienceFormFormat (val) {
-        console.log(val)
-        if(val === "MU") {
-            document.getElementById('common-fields-1').style.display="block";
-            document.getElementById('music-fields').style.display="block";
-            document.getElementById('show-fields').style.display="none";
-            document.getElementById('common-fields-2').style.display="block";
-        } else if(val === "SH") {
-            document.getElementById('common-fields-1').style.display="block";
-            document.getElementById('music-fields').style.display="none";
-            document.getElementById('show-fields').style.display="block";
-            document.getElementById('common-fields-2').style.display="block";    
-        } else {
-            document.getElementById('common-fields-1').style.display="block";
-            document.getElementById('music-fields').style.display="none";
-            document.getElementById('show-fields').style.display="none";
-            document.getElementById('common-fields-2').style.display="block";    
-        }
+    function experienceFormFormat (val) {
+        console.log("Experience Form Format firing")
+    console.log(val)
+    if(val === "MU") {
+        document.getElementById('common-fields-1').style.display="block";
+        document.getElementById('music-fields').style.display="block";
+        document.getElementById('show-fields').style.display="none";
+        document.getElementById('common-fields-2').style.display="block";
+    } else if(val === "SH") {
+        document.getElementById('common-fields-1').style.display="block";
+        document.getElementById('music-fields').style.display="none";
+        document.getElementById('show-fields').style.display="block";
+        document.getElementById('common-fields-2').style.display="block";    
+    } else {
+        document.getElementById('common-fields-1').style.display="block";
+        document.getElementById('music-fields').style.display="none";
+        document.getElementById('show-fields').style.display="none";
+        document.getElementById('common-fields-2').style.display="block";    
     }
+}
     
     
     
