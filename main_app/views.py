@@ -96,6 +96,11 @@ class ExperienceUpdate(UpdateView):
    model = Experience
    fields = '__all__'
 
+   def get_context_data(self, **kwargs):
+      context = super(ExperienceUpdate, self).get_context_data(**kwargs)
+      context['experience_form'] = ExperienceForm()
+      return context
+
    def get_success_url(self):
     artist = self.object.artist 
     return reverse( 'artist_details', kwargs={'pk': artist.pk})

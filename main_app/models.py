@@ -8,6 +8,11 @@ class Artist(models.Model):
     name = models.CharField(max_length=100)
     members = models.CharField(max_length=150)
     description = models.CharField(max_length=250)
+    video = models.CharField(
+        max_length=200,
+        blank=True,
+        null=True
+    )
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
