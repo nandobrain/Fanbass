@@ -9,8 +9,8 @@
 		<div class="card">
 			<a href="{% url 'artist_details' artist.id %}">
 			  <div class="img-ctr">
-				{% if artist.video %}
-				<img src="{{ artist.video }}" class="artist-img">
+				{% if artist.profile_photo %}
+				<img src="{{ artist.profile_photo }}" class="artist-img">
 				{% else %}
 				<img src="https://i.imgur.com/d0fnZch.png%22%3E" class="artist-img">
 				{% endif %}
