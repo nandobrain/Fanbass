@@ -11,7 +11,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Artist, Experience, User, Photo, Comment
+from .models import Artist, Experience, User, Comment
 from .forms import CommentForm, ExperienceForm
 from django.urls import reverse
 
@@ -51,8 +51,6 @@ class ArtistUpdate(UpdateView):
 class ArtistDelete(DeleteView):
    model = Artist
    success_url = '/artists'
-
-
 
 class ExperienceList(ListView):
    model = Experience
@@ -161,4 +159,3 @@ def signup(request):
 
 def home(request):
    return render(request, 'home.html')
-
