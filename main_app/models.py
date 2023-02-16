@@ -9,7 +9,7 @@ class Artist(models.Model):
     name = models.CharField(max_length=100)
     members = models.CharField(max_length=150)
     description = models.CharField(max_length=250)
-    video = models.CharField(
+    profile_photo = models.CharField(
         max_length=200,
         blank=True,
         null=True
@@ -118,10 +118,5 @@ class Photo(models.Model):
 
 class Video(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
-    url_link = models.URLField()
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    url = EmbedVideoField()
 
-    def str(self):
-        return f"video"
