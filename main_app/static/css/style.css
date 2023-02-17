@@ -364,6 +364,7 @@ select {
 #id_user_review,
 #id_music_type,
 #id_date_time,
+#id_show_venue_name,
 #id_link,
 .exp-form select,
 .exp-form input,
@@ -375,10 +376,21 @@ select {
 	font-size: 1.1rem;
 }
 
+.form #id_date_time,
+.form #id_show_venue_name,
+.form #id_link {
+	color: white;
+}
+
+.form #id_user_review { 
+	height: 4.5rem;
+}
+
 #id_experience_type,
 #id_music_type,
 #id_user_review {
 	font-size: 1rem;
+	color: var(--dark-blue)
 }
 
 .form-submit.btn.comment-btn,
