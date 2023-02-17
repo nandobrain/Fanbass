@@ -89,7 +89,7 @@
               {% if experience.link %}
               <a href="{{ experience.link }}" class="exp-link">link</a>
               {% endif %}
-              <a href="{% url 'experience_update' experience.id%}">edit</a>
+              <a href="{% url 'experience_update' experience.id %}">edit</a>
               <a href="{% url 'experience_delete' experience.id %}">delete</a>
             </div>
           </div>

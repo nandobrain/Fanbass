@@ -362,6 +362,7 @@ select {
 #id_user_review {
 	width: 20rem;
 	height: 3rem;
+	color: black;
 }
 
 .form-submit.btn.comment-btn,
