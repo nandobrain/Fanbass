@@ -41,7 +41,7 @@ class ArtistList(LoginRequiredMixin, ListView):
 
 class ArtistCreate(LoginRequiredMixin, CreateView):
    model = Artist
-   fields = ['name', 'video']
+   fields = ['name', 'profile_photo']
    success_url = '/artists'
 
    def form_valid(self, form):
@@ -53,7 +53,7 @@ class ArtistCreate(LoginRequiredMixin, CreateView):
 
 class ArtistUpdate(LoginRequiredMixin, UpdateView):
    model = Artist
-   fields =  ['members', 'description', 'video']
+   fields =  ['members', 'description', 'profile_photo']
 
 class ArtistDelete(LoginRequiredMixin, DeleteView):
    model = Artist
