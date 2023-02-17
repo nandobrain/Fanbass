@@ -140,6 +140,7 @@ h1 {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 1rem;
+	align-items: baseline;
 }
 
 .card-ctr {
@@ -150,7 +151,6 @@ h1 {
 }
 
 .img-ctr {
-	max-height: 10rem;
 	min-width: 10rem;
 	display: flex;
 	justify-content: center;

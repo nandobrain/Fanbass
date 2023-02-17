@@ -47,7 +47,7 @@ class ArtistCreate(LoginRequiredMixin, CreateView):
 
 class ArtistUpdate(LoginRequiredMixin, UpdateView):
    model = Artist
-   fields =  ['members', 'description', 'profile_photo']
+   fields =  ['profile_photo']
 
 class ArtistDelete(LoginRequiredMixin, DeleteView):
    model = Artist
