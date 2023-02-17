@@ -62,12 +62,13 @@ nav a:hover {
 }
 
 .logo-ctr {
+	margin-top: .5rem;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: flex-start;
 }
 
 .logo {
-	width: 4rem;
+	width: 3rem;
 }
 
 /* HOME PAGE */
@@ -79,15 +80,6 @@ main {
 	margin-left: 1fr;
 	overflow: scroll;
 }
-
-/* .sidebar {
-	display: flex;
-	grid-area: sidebar;
-	height: 100%;
-	color: var(--accent);
-	background-color: var(--dark-blue);
-	align-self: right;
-} */
 
 /* -------------SIGN UP/LOG IN------------- */
 
@@ -148,6 +140,7 @@ h1 {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 1rem;
+	align-items: baseline;
 }
 
 .card-ctr {
@@ -158,7 +151,6 @@ h1 {
 }
 
 .img-ctr {
-	max-height: 10rem;
 	min-width: 10rem;
 	display: flex;
 	justify-content: center;
@@ -201,6 +193,10 @@ h1 {
 	background-color: var(--accent);
 	box-shadow: 2px 2px 2px rgb(85, 85, 85);
 	cursor: pointer;
+}
+
+.artist-CRUD a:hover {
+	background-color: var(--blue)
 }
 
 .separator {
@@ -362,7 +358,39 @@ select {
 #id_user_review {
 	width: 20rem;
 	height: 3rem;
-	color: black;
+}
+
+#id_experience_type,
+#id_user_review,
+#id_music_type,
+#id_date_time,
+#id_show_venue_name,
+#id_link,
+.exp-form select,
+.exp-form input,
+.exp-form textarea {
+	display: block;
+	margin-top: .2rem;
+	margin-bottom: .5rem;
+	color: var(--dark-blue);
+	font-size: 1.1rem;
+}
+
+.form #id_date_time,
+.form #id_show_venue_name,
+.form #id_link {
+	color: white;
+}
+
+.form #id_user_review { 
+	height: 4.5rem;
+}
+
+#id_experience_type,
+#id_music_type,
+#id_user_review {
+	font-size: 1rem;
+	color: var(--dark-blue)
 }
 
 .form-submit.btn.comment-btn,
@@ -435,6 +463,10 @@ select {
 	color: var(--dark-blue)
 }
 
+.exp-icon {
+	width: 1.5rem;
+}
+
 @media (min-width: 800px) {
 	.exp-div {
 		width: 22rem;
@@ -474,14 +506,6 @@ select {
 		display: flex;
 		justify-content: center;
 	}
-
-	/* .media-ctr {
-		width: 40%;
-	}
-
-	.exp-div {
-		width: 60%;
-	} */
 
 	.exp-div {
 		width: 18rem;

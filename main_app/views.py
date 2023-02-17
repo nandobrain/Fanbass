@@ -16,9 +16,6 @@ from .models import Artist, Experience, User, Comment, Photo
 from .forms import CommentForm, ExperienceForm
 from django.urls import reverse
 
-DISCOGS_BASE_URL = 'https://api.discogs.com/'
-
-
 # Create your views here.
 
 class ArtistDetail(LoginRequiredMixin, DetailView):
@@ -46,14 +43,11 @@ class ArtistCreate(LoginRequiredMixin, CreateView):
 
    def form_valid(self, form):
       form.instance.user = self.request.user
-      response = requests.get(f"{DISCOGS_BASE_URL}artists/?key={os.environ['DISCOGS_CONSUMER_KEY']}&secret={os.environ['DISCOGS_CONSUMER_SECRET']}")
-      data = response.json()
-      print(data)
       return super().form_valid(form)
 
 class ArtistUpdate(LoginRequiredMixin, UpdateView):
    model = Artist
-   fields =  ['members', 'description', 'profile_photo']
+   fields =  ['profile_photo']
 
 class ArtistDelete(LoginRequiredMixin, DeleteView):
    model = Artist
