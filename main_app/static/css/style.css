@@ -364,6 +364,25 @@ select {
 	height: 3rem;
 }
 
+#id_experience_type,
+#id_user_review,
+#id_date_time,
+#id_link,
+.exp-form select,
+.exp-form input,
+.exp-form textarea {
+	display: block;
+	margin-top: .2rem;
+	margin-bottom: .5rem;
+	color: var(--dark-blue);
+	font-size: 1.1rem;
+}
+
+#id_experience_type,
+#id_user_review {
+	font-size: 1rem;
+}
+
 .form-submit.btn.comment-btn,
 .form-submit.btn.exp-btn {
 	font-size: 1rem;
@@ -434,6 +453,10 @@ select {
 	color: var(--dark-blue)
 }
 
+.exp-icon {
+	width: 1.5rem;
+}
+
 @media (min-width: 800px) {
 	.exp-div {
 		width: 22rem;
@@ -474,14 +497,6 @@ select {
 		justify-content: center;
 	}
 
-	/* .media-ctr {
-		width: 40%;
-	}
-
-	.exp-div {
-		width: 60%;
-	} */
-
 	.exp-div {
 		width: 18rem;
 	}
@@ -499,6 +514,10 @@ select {
 		font-size: .9rem;
 	}
 }
+
+/* EDIT EXPERIENCE FORM */
+
+
 
 /* -------------DELETE FORM------------- */
 

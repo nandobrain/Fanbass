@@ -68,7 +68,21 @@
         {% for experience in artist.experience_set.all %}
           <div class="exp-div">
             <div class="exp-top">
-              <p class="exp-type">{{ experience.get_experience_type_display }}</p>
+              {% if experience.experience_type == 'MU' %}
+              <img src="https://i.imgur.com/RQK1gCv.png" class="exp-icon"> 
+              {% endif %}
+              {% if experience.experience_type == 'SH' %}
+              <img src="https://i.imgur.com/oCQqQpX.png" class="exp-icon"> 
+              {% endif %}
+              {% if experience.experience_type == 'ME' %}
+              <img src="https://i.imgur.com/SuWBBEO.png" class="exp-icon"> 
+              {% endif %}
+              {% if experience.experience_type == 'SO' %}
+              <img src="https://i.imgur.com/VtZNMbK.png" class="exp-icon"> 
+              {% endif %}
+              {% if experience.experience_type == 'NE' %}
+              <img src="https://i.imgur.com/VdOE3v0.png" class="exp-icon"> 
+              {% endif %}
               <p class="exp-date">{{ experience.date_time|date:"m/d/Y" }}</p>
             </div>
             <div class="exp-img-ctr">
