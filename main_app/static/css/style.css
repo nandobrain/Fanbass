@@ -362,6 +362,7 @@ select {
 #id_user_review {
 	width: 20rem;
 	height: 3rem;
+	color: black;
 }
 
 #id_experience_type,

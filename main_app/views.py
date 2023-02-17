@@ -93,7 +93,7 @@ class ExperienceCreate(LoginRequiredMixin, CreateView):
 
 class ExperienceUpdate(LoginRequiredMixin, UpdateView):
    model = Experience
-   fields = '__all__'
+   fields = ['experience_type', 'user_review', 'date_time', 'link', 'music_type', 'show_venue_name']
 
    def get_context_data(self, **kwargs):
       context = super(ExperienceUpdate, self).get_context_data(**kwargs)
